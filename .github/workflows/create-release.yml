@@ -1,0 +1,25 @@
+name: Create Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Generate version and create release
+        run: |
+          TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+          COMMIT_SHORT=$(git rev-parse --short HEAD)
+          VERSION="v${TIMESTAMP}_${COMMIT_SHORT}"
+          curl -X POST \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/repos/${{ github.repository }}/releases" \
+            -d "{\"tag_name\":\"$VERSION\",\"name\":\"Release $VERSION\",\"body\":\"Automatic release from commit ${{ github.sha }}\"}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
