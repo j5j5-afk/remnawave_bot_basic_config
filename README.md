@@ -7,8 +7,8 @@ Automatic releases are generated on every commit push. To download and extract t
 
 ```bash
 
-RELEASE_URL=$(curl -s https://api.github.com/repos/j5j5-afk/remnawave_bot_basic_config/releases/latest | grep tarball_url | cut -d'"' -f4) \
-&& cd /opt && curl -L "$RELEASE_URL" -o remnawave_bot_basic_config.tar.gz
+RELEASE_URL=$(curl -s https://api.github.com/repos/j5j5-afk/remnawave_bot_basic_config/releases/latest | grep tarball_url | cut -d'"' -f4) && \
+cd /opt && curl -L "$RELEASE_URL" -o remnawave_bot_basic_config.tar.gz
 
 tar -xzf remnawave_bot_basic_config.tar.gz
 ```
