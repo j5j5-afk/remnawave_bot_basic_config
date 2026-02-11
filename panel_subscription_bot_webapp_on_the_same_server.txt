@@ -124,10 +124,10 @@ mkdir -p $basic_nginx_folder
 
 # Issuing certificates for panel and subscription domains.
 domain=$FRONT_END_DOMAIN
-acme.sh --issue --standalone -d $domain --key-file $basic_nginx_folder/$domain.privkey.key --fullchain-file $basic_nginx_folder/$domain.fullchain.pem --alpn --tlsport 8443 --server letsencrypt --force
+acme.sh --issue --standalone -d $domain --key-file $basic_nginx_folder/$domain.privkey.key --fullchain-file $basic_nginx_folder/$domain.fullchain.pem --alpn --tlsport 8443 --server letsencrypt --force --install-cert
 
 domain=$SUB_PUBLIC_DOMAIN
-acme.sh --issue --standalone -d $domain --key-file $basic_nginx_folder/$domain.privkey.key --fullchain-file $basic_nginx_folder/$domain.fullchain.pem --alpn --tlsport 8443 --server letsencrypt --force
+acme.sh --issue --standalone -d $domain --key-file $basic_nginx_folder/$domain.privkey.key --fullchain-file $basic_nginx_folder/$domain.fullchain.pem --alpn --tlsport 8443 --server letsencrypt --force --install-cert
 
 # Copying basic nginx configuration & docker-compose related file.
 cp -f $template_files_nginx_conf $basic_nginx_conf
@@ -156,9 +156,9 @@ set_and_export "CABINET_DOMAIN" "Enter cabinet domain: "
 
 # Issuing certificates for webhooks and cabinet domains.
 domain=$WEBHOOKS_DOMAIN
-acme.sh --issue --standalone -d $domain --key-file $tgb_nginx_folder/$domain.privkey.key --fullchain-file $tgb_nginx_folder/$domain.fullchain.pem --alpn --tlsport 8443 --server letsencrypt --force
+acme.sh --issue --standalone -d $domain --key-file $tgb_nginx_folder/$domain.privkey.key --fullchain-file $tgb_nginx_folder/$domain.fullchain.pem --alpn --tlsport 8443 --server letsencrypt --force --install-cert
 domain=$CABINET_DOMAIN
-acme.sh --issue --standalone -d $domain --key-file $tgb_nginx_folder/$domain.privkey.key --fullchain-file $tgb_nginx_folder/$domain.fullchain.pem --alpn --tlsport 8443 --server letsencrypt --force
+acme.sh --issue --standalone -d $domain --key-file $tgb_nginx_folder/$domain.privkey.key --fullchain-file $tgb_nginx_folder/$domain.fullchain.pem --alpn --tlsport 8443 --server letsencrypt --force --install-cert
 
 # Copying nginx configuration for telegram bot related infrastructure.
 cp -f $template_files_bot_nginx_conf $tgb_nginx_conf
