@@ -28,7 +28,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/refs/heads/master/install.
 source ~/.bashrc
 nvm install --lts
 
-sudo curl -fsSL https://get.docker.com | sh
+sudo curl -fsSL https://get.docker.com | sh -s -- --dry-run=false
 
 # Remnawave panel related exports.
 export remnawave_base_dir="/opt/remnawave"
