@@ -14,7 +14,7 @@ jobs:
       - name: Generate version and create release
         run: |
           TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-          COMMIT_SHORT=$(git rev-parse --short HEAD)
+          COMMIT_SHORT="${{ github.sha }}" && COMMIT_SHORT="${COMMIT_SHORT:0:7}"
           VERSION="v${TIMESTAMP}_${COMMIT_SHORT}"
           curl -X POST \
             -H "Authorization: token $GITHUB_TOKEN" \
